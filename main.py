@@ -8,6 +8,8 @@ Output is byte-identical on every run.
 import os
 import sys
 
+# Day-7 milestone is tied to 2 paid bounties, not just $50, so week 1
+# success or failure is verifiable on chain instead of a round dollar guess.
 PLAN = (
     "Day 1: list every open paid code bounty on Gitcoin and CodeHawks, "
     "pick three $50-200 jobs I can finish in a day, and start the first. "
@@ -17,7 +19,7 @@ PLAN = (
     "$0.02/call with 100 free calls; $20 covers hosting and the listing. "
     "Post it in three developer forums. Daily routine: 6 hours bounties, "
     "2 hours API support and docs, 1 hour tracking earnings. Milestones: "
-    "$50 by day 7, $150 by day 15, $300-450 by day 30. If no bounty pays by "
+    "$50 by day 7 (2 bounties paid), $150 by day 15, $300-450 by day 30. If no bounty pays by "
     "day 7, drop bounties and sell the API as a $49 fixed-price service to "
     "five automation agencies. Never trade, never gamble, never spend over "
     "$20 on one bet \u2014 the $100 is fuel, not a lottery ticket. Edge: a "
@@ -32,6 +34,8 @@ def validate_plan(plan):
         raise ValueError("plan is empty")
     if not 1 <= len(plan) <= 1000:
         raise ValueError("plan length %d outside 1-1000 characters" % len(plan))
+    if "Milestones:" not in plan:
+        raise ValueError("plan is missing 'Milestones:' section")
 
 
 def main():
